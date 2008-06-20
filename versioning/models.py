@@ -2,6 +2,8 @@
 from datetime import datetime
 
 from django.db import models
+from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
 
 class Revision(models.Model):
     """
@@ -9,5 +11,5 @@ class Revision(models.Model):
     """
     object_pk = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType)
-    content_object = models.GenericForeignKey("object_pk", "content_type")
+    content_object = generic.GenericForeignKey("object_pk", "content_type")
     created_at = models.DateTimeField(default=datetime.now)
