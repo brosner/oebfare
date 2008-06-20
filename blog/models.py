@@ -9,6 +9,8 @@ from tagging.fields import TagField
 
 from comment_utils.moderation import CommentModerator, moderator
 
+import versioning
+
 class PostManager(models.Manager):
     def active(self):
         return self.filter(active=True)
@@ -40,6 +42,7 @@ class Post(models.Model):
             "slug": self.slug,
         })
     get_absolute_url = models.permalink(get_absolute_url)
+versioning.register(Post)
 
 class PostModerator(CommentModerator):
     akismet = True
