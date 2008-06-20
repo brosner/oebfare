@@ -32,6 +32,14 @@
 {% block sr %}
 <h2>Entry Details</h2>
 <p>Published: <strong>{{ post.pub_date|date:"M j, Y" }} at {{ post.pub_date|time:"f A" }}</strong></p>
+{% load versioning_tags %}
+{% revisions_for_object post as revisions %}
+{% if revisions %}
+<h2>Revision History</h2>
+{% for revision in revisions %}
+{{ revision }}<br />
+{% endfor %}
+{% endif %}
 {% load tagging_tags %}
 {% tags_for_object post as tags %}
 {% if tags %}
