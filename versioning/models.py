@@ -13,3 +13,7 @@ class Revision(models.Model):
     content_type = models.ForeignKey(ContentType)
     content_object = generic.GenericForeignKey("object_pk", "content_type")
     created_at = models.DateTimeField(default=datetime.now)
+    
+    class Admin:
+        list_display = ("content_type", "object_pk", "created_at")
+        list_filter = ("created_at", "content_type",)
