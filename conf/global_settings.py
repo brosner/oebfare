@@ -78,6 +78,7 @@ INSTALLED_APPS = (
    # See #5825 and #6128 about why apps with management commands must be
    # referenced without the project in the import path.
    "aggregator",
+   "versioning",
    
    "tagging",
    "comment_utils",
