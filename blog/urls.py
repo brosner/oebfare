@@ -14,6 +14,8 @@ date_based_dict = {
     "date_field": "pub_date",
 }
 
+blog_post_detail_re = r"^(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[-\w]+)/"
+
 urlpatterns = patterns("",
     url(r"^feeds/(?P<url>.*)/$", "django.contrib.syndication.views.feed", {
         "feed_dict": feeds,
@@ -25,7 +27,9 @@ urlpatterns = patterns("",
         "related_tags": True,
     }, name="blog_tag_detail"),
     
-    url(r"^(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>[-\w]+)/$",
+    url(r"%shistory/$" % blog_post_detail_re, object_history,
+        name="blog_post_history"),
+    url(r"%s$" % blog_post_detail_re,
         object_detail, dict(date_based_dict, **{
             "template_object_name": "post",
         }), name="blog_post_detail"),

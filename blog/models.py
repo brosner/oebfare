@@ -42,7 +42,7 @@ class Post(models.Model):
             "slug": self.slug,
         })
     get_absolute_url = models.permalink(get_absolute_url)
-versioning.register(Post)
+versioning.register(Post, fields=["body"])
 
 class PostModerator(CommentModerator):
     akismet = True

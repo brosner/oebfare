@@ -1,6 +1,20 @@
 
+from django.template import RequestContext
 from django.views.generic import date_based
+from django.shortcuts import render_to_response, get_object_or_404
+
+from versioning import revisions_for_object
+
 from oebfare.blog.models import Post
+
+def object_history(request, year, month, day, slug):
+    post = get_object_or_404(Post, slug=slug)
+    context = {
+        "post": post,
+        "revisions": revisions_for_object(post),
+    }
+    return render_to_response("blog/post_history.html",
+        context, context_instance=RequestContext(request))
 
 def privileged_post_queryset(view_func):
     def _wrapped_view(request, **kwargs):
