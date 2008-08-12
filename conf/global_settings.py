@@ -1,7 +1,7 @@
 
 import os
 
-LOCAL_DEV = False
+LOCAL_DEVELOPMENT = False
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -27,7 +27,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -73,21 +73,18 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-   "oebfare.blog",
-   "oebfare.links",
-   # See #5825 and #6128 about why apps with management commands must be
-   # referenced without the project in the import path.
-   "aggregator",
-   "versioning",
+    "oebfare.blog",
+    "oebfare.links",
+    "aggregator",
    
-   "tagging",
-   "comment_utils",
-   "django_evolution",
+    "tagging",
+    "comment_utils",
+    "versioning",
    
-   "django.contrib.admin",
-   "django.contrib.auth",
-   "django.contrib.contenttypes",
-   "django.contrib.comments",
-   "django.contrib.sessions",
-   "django.contrib.sites",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.comments",
+    "django.contrib.sessions",
+    "django.contrib.sites",
 )
