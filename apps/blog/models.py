@@ -70,3 +70,10 @@ class PostModerator(CommentModerator):
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipient_list)
 
 moderator.register(Post, PostModerator)
+
+class CommentEmailNotificationRecipient(models.Model):
+    post = models.ForeignKey(Post)
+    # used so that if the comment is deleted this notification is removed too.
+    comment = models.ForeignKey(Comment)
+    email_address = models.EmailField()
+    wants_email = models.BooleanField()

@@ -11,6 +11,8 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, TextLexer
 
+from blog.forms import CommentForm
+
 register = Library()
 
 VARIANTS = {}
@@ -56,3 +58,32 @@ def show_post_brief(context, post):
         "can_edit": context["user"].is_staff,
     }
 register.inclusion_tag("blog/post_brief.html", takes_context=True)(show_post_brief)
+
+# a bit lazy approach, but it was quick ;)
+from django.contrib.comments.templatetags.comments import CommentFormNode, RenderCommentFormNode
+
+class OebfareCommentFormNode(CommentFormNode):
+    """Insert a form for the comment model into the context."""
+
+    def get_form(self, context):
+        ctype, object_pk = self.get_target_ctype_pk(context)
+        if object_pk:
+            return CommentForm(ctype.get_object_for_this_type(pk=object_pk))
+        else:
+            return None
+
+class OebfareRenderCommentFormNode(OebfareCommentFormNode, RenderCommentFormNode):
+    pass
+
+@register.tag
+def render_oebfare_comment_form(parser, token):
+    """
+    Render the comment form (as returned by ``{% render_comment_form %}``) through
+    the ``comments/form.html`` template.
+
+    Syntax::
+
+        {% render_comment_form for [object] %}
+        {% render_comment_form for [app].[model] [object_id] %}
+    """
+    return OebfareRenderCommentFormNode.handle_token(parser, token)
