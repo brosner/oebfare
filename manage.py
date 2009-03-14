@@ -1,11 +1,31 @@
 #!/usr/bin/env python
-from django.core.management import execute_manager
+import sys
+
+from os.path import abspath, dirname, join
+from site import addsitedir
+
+sys.path.insert(0, abspath(join(dirname(__file__), "externals")))
+
+from django.conf import settings
+from django.core.management import setup_environ, execute_from_command_line
+
 try:
-    import settings # test comment
+    import settings as settings_mod # Assumed to be in the same directory.
 except ImportError, e:
-    import sys
     sys.stderr.write("cannot find settings: %s\n" % e)
     sys.exit(1)
 
+# setup the environment before we start accessing things in the settings.
+setup_environ(settings_mod)
+
+if hasattr(settings, "PINAX_ROOT"):
+    path = addsitedir(join(settings.PINAX_ROOT, "libs/external_libs"), set())
+    if path:
+        sys.path = list(path) + sys.path
+    sys.path.insert(0, join(settings.PINAX_ROOT, "apps/external_apps"))
+    sys.path.insert(0, join(settings.PINAX_ROOT, "apps/local_apps"))
+
+sys.path.insert(0, join(settings.PROJECT_ROOT, "apps"))
+
 if __name__ == "__main__":
-    execute_manager(settings)
+    execute_from_command_line()
