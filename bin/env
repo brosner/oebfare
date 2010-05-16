@@ -1,0 +1,7 @@
+#!/bin/bash
+DOMAIN="oebfare.com"
+PROJECT="oebfare_project"
+ROOT="${HOME}/webapps/${DOMAIN}"
+PROJECT_ROOT="${ROOT}/${PROJECT}"
+SERVER_ROOT="${ROOT}/oebland"
+VENV_ROOT="${HOME}/virtualenvs/${DOMAIN}"
