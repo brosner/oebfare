@@ -45,8 +45,8 @@ AUTH_PROFILE_MODULE = 'authors.userprofile'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = [
-    "django.template.loaders.filesystem.load_template_source",
-    "django.template.loaders.app_directories.load_template_source",
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -55,14 +55,15 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.contrib.messages.context_processors.messages",
 ]
 
 MIDDLEWARE_CLASSES = [
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.middleware.doc.XViewMiddleware",
-
+    "django.contrib.messages.middleware.MessageMiddleware",
+    
     "authors.middleware.AuthorMiddleware",
 ]
 
@@ -82,22 +83,23 @@ TEMPLATE_DIRS = [
 MEDIA_ROOT = os.path.realpath(os.path.join(THEME_DIR, "static"))
 
 INSTALLED_APPS = [
-   "blog",
-   "links",
-   "aggregator",
-   "wsgi",
-   "authors",
-   
-   "tagging",
-   "mailer",
-   "gravatar",
-   
-   "django.contrib.admin",
-   "django.contrib.auth",
-   "django.contrib.contenttypes",
-   "django.contrib.comments",
-   "django.contrib.sessions",
-   "django.contrib.sites",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.comments",
+    "django.contrib.messages",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    
+    "tagging",
+    "mailer",
+    "gravatar",
+    
+    "blog",
+    "links",
+    "aggregator",
+    "wsgi",
+    "authors",
 ]
 
 try:
