@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     "tagging",
     "mailer",
     "gravatar",
+    "gunicorn",
     
     "blog",
     "links",
