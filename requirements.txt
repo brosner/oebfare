@@ -1,10 +1,12 @@
-Django==1.0.2-final
-Pygments==1.0
-docutils==0.5
+--extra-index-url=http://dist.pinaxproject.com/dev/
 
-django-mailer
-django-gravatar
-
-# TODO: move to released versions.
-http://django-tagging.googlecode.com/svn/trunk/
--e git+git://github.com/jezdez/django-comment-utils.git#egg=django-comment-utils
+Django==1.2.dev13117
+PIL==1.1.7
+Pygments==1.3.1
+django-gravatar==0.1.0
+django-mailer==0.2.0dev1
+django-tagging==0.3.1
+docutils==0.6
+gunicorn==0.8.1
+psycopg2==2.2.0
+setproctitle==1.0
