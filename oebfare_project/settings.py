@@ -67,7 +67,7 @@ MIDDLEWARE_CLASSES = [
     "authors.middleware.AuthorMiddleware",
 ]
 
-ROOT_URLCONF = "oebfare.urls"
+ROOT_URLCONF = "oebfare_project.urls"
 
 THEME = "oebfare"
 

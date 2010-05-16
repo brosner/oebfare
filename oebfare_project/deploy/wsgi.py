@@ -14,7 +14,7 @@ def setup_environ(settings):
     sys.path.insert(0, os.path.realpath(os.path.join(current_dir, "../../")))
     os.environ["DJANGO_SETTINGS_MODULE"] = settings
 
-setup_environ("oebfare.settings")
+setup_environ("oebfare_project.settings")
 
 from cherrypy.wsgiserver import CherryPyWSGIServer
 from django.core.handlers.wsgi import WSGIHandler
