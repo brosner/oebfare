@@ -8,9 +8,9 @@ LOCAL_DEVELOPMENT = False
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
+ADMINS = [
     ("Brian Rosner", "brosner@gmail.com"),
-)
+]
 
 MANAGERS = ADMINS
 
@@ -44,27 +44,27 @@ ADMIN_MEDIA_PREFIX = "/media/"
 AUTH_PROFILE_MODULE = 'authors.userprofile'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
+TEMPLATE_LOADERS = [
     "django.template.loaders.filesystem.load_template_source",
     "django.template.loaders.app_directories.load_template_source",
-)
+]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
+TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.doc.XViewMiddleware",
 
     "authors.middleware.AuthorMiddleware",
-)
+]
 
 ROOT_URLCONF = "oebfare.urls"
 
@@ -72,16 +72,16 @@ THEME = "oebfare"
 
 THEME_DIR = os.path.join(PROJECT_ROOT, "themes", THEME)
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
     #os.path.join(PROJECT_ROOT, "templates"),
     os.path.join(PROJECT_ROOT, "themes", THEME, "templates"),
-)
+]
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.realpath(os.path.join(THEME_DIR, "static"))
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
    "blog",
    "links",
    "aggregator",
@@ -98,7 +98,7 @@ INSTALLED_APPS = (
    "django.contrib.comments",
    "django.contrib.sessions",
    "django.contrib.sites",
-)
+]
 
 try:
     from local_settings import *
