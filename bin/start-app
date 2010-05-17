@@ -4,4 +4,4 @@ BIN_DIR=`dirname $(readlink -f $0)`
 . $BIN_DIR/env
 GUNICORN_OPTS="--daemon --name=${DOMAIN} --config=${SERVER_ROOT}/conf/gunicorn.conf.py --pid=${SERVER_ROOT}/run/gunicorn.pid unix:${SERVER_ROOT}/run/gunicorn.sock"
 
-(cd $PROJECT_ROOT && $VENV_ROOT/bin/python manage.py run_gunicorn $GUNICORN_OPTS)
+(cd $PROJECT_ROOT && $VENV_ROOT/bin/python ./manage.py run_gunicorn $GUNICORN_OPTS)
