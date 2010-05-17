@@ -18,3 +18,6 @@ class Link(models.Model):
     
     class Meta:
         ordering = ("-created",)
+    
+    def as_html(self):
+        return self.description

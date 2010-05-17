@@ -51,10 +51,13 @@ def rst_to_html(value):
     
 
 def to_html(obj):
-    if obj.markup_type == "html":
-        html = obj.body
-    elif obj.markup_type == "rst":
-        html = rst_to_html(obj.body)
+    if hasattr(obj, "markup_type"):
+        if obj.markup_type == "html":
+            html = obj.body
+        elif obj.markup_type == "rst":
+            html = rst_to_html(obj.body)
+    else:
+        html = obj.as_html()
     return mark_safe(html)
 register.filter("to_html", to_html)
 
